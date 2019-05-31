@@ -1,5 +1,4 @@
 import { Repository, IUseCaseParams } from '.';
-import { TodoEntity } from '../entities';
 
 export abstract class UseCase {
   repository: Repository;
@@ -8,5 +7,5 @@ export abstract class UseCase {
     this.repository = repository;
   }
 
-  abstract execute(params?: IUseCaseParams): Promise<TodoEntity>;
+  abstract execute(params?: IUseCaseParams): Promise<any>;
 }
