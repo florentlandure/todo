@@ -1,11 +1,11 @@
-import { CreateTodoParams } from './types';
+import { AddTodoParams } from './types';
 import { ValidationError } from './common';
 import { Todo } from './Todo';
 
 export class TodoValidator {
   private _errors: ValidationError[] = [];
 
-  validate(params: CreateTodoParams): boolean {
+  validate(params: AddTodoParams): boolean {
     this._errors = [];
     return (
       this.hasValidTitle(params.title) &&

@@ -1,7 +1,7 @@
 import { AddTodo } from '../../usecases';
 import { TodoRepositoryMock } from '../TodoRepositoryMock';
 import { Todo } from '../../Todo';
-import { CreateTodoParams } from '../../types';
+import { AddTodoParams } from '../../types';
 
 describe('AddTodo', () => {
   const mockRepository = new TodoRepositoryMock();
@@ -10,11 +10,11 @@ describe('AddTodo', () => {
   test('Add a todo', async () => {
     expect.assertions(3);
     const spy = jest.spyOn(mockRepository, 'add');
-    const params: CreateTodoParams = { title: 'Title' };
+    const params: AddTodoParams = { title: 'Title' };
     const todo = await addTodo.execute(params);
     expect(todo instanceof Todo).toBe(true);
     expect(todo.isCompleted).toBe(false);
-    expect(spy).toHaveBeenCalledWith(params);
+    expect(spy).toHaveBeenCalledWith(todo);
   });
 
   test('Add a todo without description', async () => {
@@ -32,5 +32,13 @@ describe('AddTodo', () => {
     });
     expect(todo.title).toEqual('Title');
     expect(todo.description).toEqual('Description');
+  });
+
+  test('Add a todo without title', async () => {
+    try {
+      const todo = await addTodo.execute({ title: '' });
+    } catch (err) {
+      expect(err.errors.length).toEqual(1);
+    }
   });
 });

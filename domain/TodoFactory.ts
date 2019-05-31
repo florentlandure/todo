@@ -1,10 +1,10 @@
 import { Todo } from './Todo';
-import { CreateTodoParams } from './types';
+import { AddTodoParams } from './types';
 import { TodoValidator } from './TodoValidator';
 import { ValidationException } from './common/ValidationException';
 
 export class TodoFactory {
-  static create(params: CreateTodoParams): Todo {
+  static create(params: AddTodoParams): Todo {
     const validator = new TodoValidator();
 
     if (validator.validate(params)) {

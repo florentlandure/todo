@@ -1,10 +1,10 @@
 import { Repository } from '../common';
 import { Todo } from '../Todo';
-import { CreateTodoParams } from '../types';
+import { AddTodoParams } from '../types';
 
 export class TodoRepositoryMock implements Repository<Todo> {
-  add(params: CreateTodoParams): Promise<Todo> {
-    return Promise.resolve(new Todo(params.title, params.description));
+  add(todo: Todo): Promise<Todo> {
+    return Promise.resolve(todo);
   }
 
   getAll(): Promise<Todo[]> {

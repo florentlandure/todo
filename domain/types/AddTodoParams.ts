@@ -1,4 +1,4 @@
-export type CreateTodoParams = {
+export type AddTodoParams = {
   title: string;
   description?: string;
 };
